@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import icon from '../assets/icon.svg';
 
 const Hello = () => {
@@ -22,6 +22,7 @@ const Hello = () => {
             Read our docs
           </button>
         </a>
+        <Link to="/sample">sample</Link>
         <a
           href="https://github.com/sponsors/electron-react-boilerplate"
           target="_blank"
@@ -39,11 +40,16 @@ const Hello = () => {
   );
 };
 
+const Sample = () => {
+  return <p>hello world</p>;
+};
+
 export default function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Switch>
-        <Route path="/" component={Hello} />
+        <Route path="/" exact component={Hello} />
+        <Route path="/sample" component={Sample} />
       </Switch>
     </Router>
   );
