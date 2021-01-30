@@ -12,6 +12,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from '../scripts/CheckNodeEnv';
 import DeleteSourceMaps from '../scripts/DeleteSourceMaps';
+import WasmPackPlugin from "@wasm-tool/wasm-pack-plugin";
 
 CheckNodeEnv('production');
 DeleteSourceMaps();
@@ -149,6 +150,9 @@ export default merge(baseConfig, {
       DEBUG_PROD: false,
     }),
 
+    new WasmPackPlugin({
+      crateDirectory: path.resolve(__dirname, '..', '..'),
+    }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),

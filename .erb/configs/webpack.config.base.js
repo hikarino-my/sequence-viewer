@@ -7,6 +7,9 @@ import webpack from 'webpack';
 import { dependencies as externals } from '../../src/package.json';
 
 export default {
+  experiments:{
+    asyncWebAssembly: true
+  },
   externals: [...Object.keys(externals || {})],
 
   module: {
@@ -34,7 +37,7 @@ export default {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.wasm'],
     modules: [path.join(__dirname, '../src'), 'node_modules'],
   },
 
